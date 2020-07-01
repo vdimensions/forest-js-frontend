@@ -19,7 +19,7 @@
     "typescript": "^3.8.3"
   },
   "author": "Virtual Dimensions",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/vdimensions/forest-js-frontend#readme",
   "keywords": [
     "forest",
