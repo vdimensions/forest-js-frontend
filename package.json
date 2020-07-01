@@ -27,7 +27,7 @@
     "forest-js-fronted"
   ],
   "bugs": {
-    "url": "https://github.com/vdimensions/forest-js/issues"
+    "url": "https://github.com/vdimensions/forest-js-frontend/issues"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
