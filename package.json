@@ -1,5 +1,5 @@
 {
-  "name": "@vdimensions/forest-js-fronted",
+  "name": "@vdimensions/forest-js-frontend",
   "version": "1.0.0",
   "description": "A javascript frontend for Forest-based applications",
   "main": "dist/index.js",
@@ -24,7 +24,7 @@
   "keywords": [
     "forest",
     "forest-js",
-    "forest-js-fronted"
+    "forest-js-frontend"
   ],
   "bugs": {
     "url": "https://github.com/vdimensions/forest-js-frontend/issues"
