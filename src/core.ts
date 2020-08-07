@@ -3,7 +3,10 @@ import * as Immutable from "immutable";
 export const EMPTY_HIERARCHY: RegionMap = { "": [] };
 
 export interface Command {
-    name: string
+    name: string,
+    displayName: string,
+    tooltip: string,
+    description: string
 }
 
 export type RegionMap = { [region:string]: string[] };
