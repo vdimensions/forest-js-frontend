@@ -10,7 +10,7 @@ export interface Command {
 }
 
 export type RegionMap = { [region:string]: string[] };
-export type CommandMap = { [region:string]: Command };
+export type CommandMap = { [command:string]: Command };
 
 export interface ViewState<T = any> {
     instanceId: string,
