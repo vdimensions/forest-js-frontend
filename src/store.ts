@@ -4,7 +4,7 @@ import { ForestResponse } from "./client";
 
 type Mapping<P, Q> = { (state: P) : Q }
 type AppStateSelector = Mapping<ForestResponse, ForestAppState>;
-type ViewStateSelector = <T> (key: string) => Mapping<ForestAppState, ViewState<T>>;
+type ViewStateSelector = (key: string) => Mapping<ForestAppState, ViewState>;
 type RootHierarchySelector = Mapping<ForestAppState, RegionMap>;
 
 const appStateSelectorImpl = (response: ForestResponse) => {
@@ -12,9 +12,8 @@ const appStateSelectorImpl = (response: ForestResponse) => {
     let knownIds = ImmutableMap<string, string>();
     for (let i = 0; i < response.views.length; ++i) {
         const item = response.views[i];
-        const existingItem = instances.get(item.instanceId);
-        instances = instances.set(item.instanceId, (existingItem ? { ...existingItem, ...item } : item));
-        knownIds = knownIds.set(item.instanceId, item.instanceId);
+        instances = instances.set(item.id, item);
+        knownIds = knownIds.set(item.id, item.id);
     }
     const deleteKnownId = (id: string) => knownIds = knownIds.delete(id);
     response.views.flatMap(v => Object.values(v.regions).flatMap(r => r)).forEach(deleteKnownId);
@@ -28,7 +27,7 @@ const appStateSelectorImpl = (response: ForestResponse) => {
 
 export const appStateSelector: AppStateSelector = appStateSelectorImpl;
 
-export const viewStateSelector : ViewStateSelector = <T> (key: string) => (appState: ForestAppState) => appState.instances.get(key) as ViewState<T>;
+export const viewStateSelector : ViewStateSelector = (key: string) => (appState: ForestAppState) => appState.instances.get(key) as ViewState;
 
 export const rootHierarchySelector: RootHierarchySelector = (state: ForestAppState) => state.hierarchy || EMPTY_HIERARCHY;
 
