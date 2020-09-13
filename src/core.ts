@@ -9,8 +9,9 @@ export interface Command {
     description: string
 }
 
-export type RegionMap = { [region:string]: string[] };
-export type CommandMap = { [command:string]: Command };
+export type RegionMap = { [region: string]: string[] };
+export type CommandMap = { [command: string]: Command };
+export type ViewStateMap = { [view: string]: ViewState };
 
 export class ViewState {
     readonly id: string;
@@ -31,6 +32,7 @@ export class ViewState {
 export class ForestAppState {
     static empty = () => new ForestAppState();
     path: string = "";
+    // TODO: replace with `ViewStateMap` and avoid using Immutable for public members
     instances: Immutable.Map<string, ViewState> = Immutable.Map<string, ViewState>();
     hierarchy: RegionMap =  EMPTY_HIERARCHY;
 }

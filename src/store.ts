@@ -16,7 +16,7 @@ const appStateSelectorImpl = (response: ForestResponse) => {
         knownIds = knownIds.set(item.id, item.id);
     }
     const deleteKnownId = (id: string) => knownIds = knownIds.delete(id);
-    response.views.flatMap(v => Object.values(v.regions).flatMap(r => r)).forEach(deleteKnownId);
+    response.views.flatMap(v => Object.values(v.regions||{}).flatMap(r => r)).forEach(deleteKnownId);
     const hierarchy: RegionMap = { "": knownIds.valueSeq().toArray() };
     return {
         path: response.path,
