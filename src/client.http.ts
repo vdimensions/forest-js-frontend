@@ -12,8 +12,11 @@ const JsonHeaders = function() {
 }();
 
 const stripBlanks = (obj: any) => {
+    if (Array.isArray(obj) || obj instanceof String) {
+        return obj;
+    }
     let keys = Object.keys(obj);
-    if (keys.length == 0) {
+    if (keys.length === 0) {
         // primitive type, we must return the passed-in instance 
         return obj;
     }
@@ -32,7 +35,7 @@ const prepareBody = (options: any) => {
     let { body } = options;
 
     if (options && options.headers && options.headers[HeaderNames.CONTENT_TYPE] === JsonHeaders[HeaderNames.CONTENT_TYPE]) {
-        body = options.body && JSON.stringify(stripBlanks(options.body));
+        body = options.body && (options.body instanceof String ? options.body : JSON.stringify(stripBlanks(options.body)));
     }
 
     return body;
