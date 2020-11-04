@@ -12,8 +12,12 @@ const JsonHeaders = function() {
 }();
 
 const stripBlanks = (obj: any) => {
-    let result: any = { };
     let keys = Object.keys(obj);
+    if (keys.length == 0) {
+        // primitive type, we must return the passed-in instance 
+        return obj;
+    }
+    let result: any = { };
     for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
         if (!obj.hasOwnProperty(key) || obj[key] === null || obj[key] === undefined || obj[key] === '') {
