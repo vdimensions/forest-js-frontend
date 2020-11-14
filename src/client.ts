@@ -8,7 +8,7 @@ export class ForestResponse {
 
     constructor({path = '', views = []}) {
         this.path = path;
-        this.views = views;
+        this.views = views.map((v: any) => new ViewState(v));
     }
 }
 
