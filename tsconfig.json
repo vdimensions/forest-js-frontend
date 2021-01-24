@@ -1,16 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "es2017", "es7", "es6", "esnext",
-      "dom", "dom.iterable"      
-    ],
+    "outDir": "dist",
     "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "target": "es5",
     "moduleResolution": "node",
     "declaration": true,
-    "outDir": "dist",
+    "esModuleInterop": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
-    "esModuleInterop": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
