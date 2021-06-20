@@ -4,10 +4,10 @@ export const EMPTY_HIERARCHY: RegionMap = { "": [] };
 
 export interface Command {
     name: string,
-    path: string,
-    description: string,
-    displayName: string,
-    tooltip: string
+    path?: string,
+    description?: string,
+    displayName?: string,
+    tooltip?: string
 }
 
 export type RegionMap = { [region: string]: string[] };
