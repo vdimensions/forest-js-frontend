@@ -1,13 +1,16 @@
 {
   "name": "@vdimensions/forest-js-frontend",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A javascript frontend for Forest-based applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bump_patch": "npm version patch --force",
+    "bump_minor": "npm version minor --force",
+    "bump_major": "npm version major --force"
   },
   "dependencies": {
     "immutable": "^4.0.0"
