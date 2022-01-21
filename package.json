@@ -17,9 +17,7 @@
     "forest-js",
     "forest-js-frontend"
   ],
-  "publishConfig": {
-    "@vdimensions:registry": "https://npm.pkg.github.com/"
-  },
+
   "main": "index.js",
   "module": "index.esm.js",
   "types": "index.d.ts",
