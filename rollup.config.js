@@ -4,14 +4,12 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import copy from "rollup-plugin-copy";
 import license from "rollup-plugin-license";
-import merge from 'deepmerge';
-import { createBasicConfig } from '@open-wc/building-rollup';
 
 const path = require('path');
 const packageJson = require("./package.json");
 
-export default merge(createBasicConfig(), {
-  input: "tmp/tsc/src/index.js",
+export default {
+  input: "src/index.ts",
   output: [
     {
       file: `dist/${packageJson.main}`,
@@ -65,4 +63,4 @@ export default merge(createBasicConfig(), {
       // },
     }),
   ]
-});
+};

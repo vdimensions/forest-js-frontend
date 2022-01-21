@@ -30,5 +30,3 @@ export const appStateSelector: AppStateSelector = appStateSelectorImpl;
 export const viewStateSelector : ViewStateSelector = (key: string) => (appState: ForestAppState) => appState.instances.get(key) as ViewState;
 
 export const rootHierarchySelector: RootHierarchySelector = (state: ForestAppState) => state.hierarchy || EMPTY_HIERARCHY;
-
-export default { }

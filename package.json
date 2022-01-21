@@ -1,6 +1,6 @@
 {
   "name": "@vdimensions/forest-js-frontend",
-  "version": "1.2.14",
+  "version": "1.2.13",
   "author": "Virtual Dimensions",
   "license": "Apache-2.0",
   "description": "A javascript frontend for Forest-based applications",
@@ -25,8 +25,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "rimraf dist tmp && tsc && rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "immutable": "^4.0.0"

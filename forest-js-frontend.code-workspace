@@ -4,5 +4,11 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"kosunix.guid",
+			"eg2.vscode-npm-script"
+		]
+	}
 }

@@ -1,0 +1,39 @@
+image: node:lts
+
+cache:
+  paths:
+    - node_modules
+  files:
+    - version.txt
+
+stages:
+  - build
+  - publish
+
+build:
+  stage: build
+  script:
+    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
+    - npm install
+    - npm run build
+  allow_failure: false
+  artifacts:
+    paths:
+      - build
+    when: on_success
+  only:
+    - merge_requests
+    - master
+
+publish:
+  stage: publish
+  script:
+    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
+    - if [[ -f ./version.txt ]]; then eval "npm version $(cat version.txt) --allow-same-version --force"; fi;
+    - npm install
+    - npm version patch --force --no-git-tag-version
+    - npm run build
+    - node -e 'console.log(require("./package.json").version);' > version.txt
+    - npm publish
+  only:
+    - master
