@@ -4,35 +4,34 @@ cache:
   paths:
     - node_modules
     - version.txt
+    - dist
 
 stages:
   - build
-  - publish
+  - deploy
 
 build:
   stage: build
   script:
-    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
+    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
     - npm install
+    - npm version patch --force --no-git-tag-version
     - npm run build
+    - node -e 'console.log(require("./package.json").version);' > version.txt
   allow_failure: false
   artifacts:
     paths:
-      - build
+      - dist
     when: on_success
   only:
     - merge_requests
     - master
 
 publish:
-  stage: publish
+  stage: deploy
   script:
-    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" > .npmrc
-    - if [[ -f ./version.txt ]]; then eval "npm version $(cat version.txt) --allow-same-version --force"; fi;
-    - npm install
-    - npm version patch --force --no-git-tag-version
-    - npm run build
-    - node -e 'console.log(require("./package.json").version);' > version.txt
+    - cd dist
+    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
     - npm publish
   only:
     - master
