@@ -13,7 +13,11 @@ stages:
 build:
   stage: build
   script:
-    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee -a .npmrc
     - npm install
     - npm version patch --force --no-git-tag-version
     - npm run build
@@ -31,7 +35,11 @@ publish:
   stage: deploy
   script:
     - cd dist
-    - echo -e "@vdimensions:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/ \n//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+    - |
+      {
+        echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+        echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+      } | tee -a .npmrc
     - npm publish
   only:
     - master
