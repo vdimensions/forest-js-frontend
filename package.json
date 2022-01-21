@@ -1,42 +1,52 @@
 {
   "name": "@vdimensions/forest-js-frontend",
   "version": "1.2.13",
-  "description": "A javascript frontend for Forest-based applications",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "prepare": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bump_patch": "npm version patch --force && git add package.json && git commit -m 'bumped patch version'",
-    "bump_minor": "npm version minor --force && git add package.json && git commit -m 'bumped minor version'",
-    "bump_major": "npm version major --force && git add package.json && git commit -m 'bumped major version'"
-  },
-  "dependencies": {
-    "immutable": "^4.0.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/node": "^13.13.52",
-    "tslint": "^6.1.3",
-    "typescript": "^3.9.10"
-  },
   "author": "Virtual Dimensions",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/vdimensions/forest-js-frontend#readme",
+  "description": "A javascript frontend for Forest-based applications",
+  "homepage": "https://gitlab.com/vdimensions/frameworks/forest/forest-js-frontend#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/vdimensions/frameworks/forest/forest-js-frontend.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/vdimensions/frameworks/forest/forest-js-frontend/issues"
+  },
   "keywords": [
     "forest",
     "forest-js",
     "forest-js-frontend"
   ],
-  "bugs": {
-    "url": "https://github.com/vdimensions/forest-js-frontend/issues"
-  },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "@vdimensions:registry": "https://npm.pkg.github.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vdimensions/forest-js-frontend.git"
+  "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "rimraf dist tmp && tsc && rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^2.0.1",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.13.52",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.61.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-license": "^2.6.1",
+    "rollup-plugin-multi-input": "^1.3.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "tslint": "^6.1.3",
+    "typescript": "^3.9.10"
   }
 }

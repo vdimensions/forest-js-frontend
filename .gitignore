@@ -61,4 +61,5 @@ typings/
 .next
 
 dist
+tmp
 .env*.local

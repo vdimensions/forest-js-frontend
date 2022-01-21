@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "tmp/tsc",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    "target": "es5",
+    "target": "es2018",
     "moduleResolution": "node",
     "declaration": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
@@ -21,12 +21,15 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "rootDir": "./",
+    "noEmitOnError": true
   },
   "exclude": [
     "node_modules",
     "dist",
     "test",
-    ".appveyor.yml"
+    ".appveyor.yml",
+    ".gitlab-ci.yml"
   ],
   "include": [
     "src/*.ts"
