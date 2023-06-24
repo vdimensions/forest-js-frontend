@@ -3,13 +3,6 @@ image: node:14-buster
 include:
   - template: Security/SAST.gitlab-ci.yml
 
-
-semgrep-sast:
-  cache: {}
-
-sast:
-  stage: sast
-
 cache:
   paths:
     - node_modules
@@ -17,9 +10,14 @@ cache:
     - dist
 
 stages:
-  - sast
   - build
   - deploy
+
+semgrep-sast:
+  cache: {}
+
+sast:
+  stage: build
 
 build:
   stage: build
