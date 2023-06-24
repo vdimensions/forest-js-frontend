@@ -29,6 +29,7 @@ build:
     - npm install
     - npm run build
     - node -e 'console.log(require("./package.json").version);' > version.txt
+    - cat version.txt
   allow_failure: false
   artifacts:
     paths:
